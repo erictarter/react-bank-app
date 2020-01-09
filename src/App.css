@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100%;
 }
 
 .App-logo {
@@ -35,4 +41,43 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.nav-text {
+  color: white;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+.nav-icon-position {
+  position: relative;
+}
+
+.head-text-position {
+  position: relative;
+  top: 8px;
+  right: 350px;
+}
+
+.link-text-position {
+  position: relative;
+  top: 10px;
+}
+/* .footer {
+  margin-top: 160px;
+  margin-bottom: 50px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+} */
+
+.footer {
+  margin-top: auto;
+}
+
+.footer-icon-position {
+  position: relative;
+  top: 6px;
 }
