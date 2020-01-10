@@ -16,9 +16,9 @@ const NavBar = () => {
           <h6>
             <Link to='/'>Home </Link>
           </h6>
-          <h6>
+          {/* <h6>
             <Link to='/login'>Login </Link>
-          </h6>
+          </h6> */}
           <h6>
             <Link to='/register'>Register</Link>
           </h6>

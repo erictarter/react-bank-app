@@ -1,27 +1,79 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useAlert } from 'react-alert';
+import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import UserContext from '../../context/userContext';
+import { timeout } from 'q';
 
 const Register = () => {
   // const [user, setUser] = useState({
-  //   // name: '',
-  //   // email: '',
-  //   // password: '',
-  //   // password2: ''
+  //   name: '',
+  //   email: '',
+  //   password: '',
+  //   password2: ''
   // });
   const { user, setUser } = useContext(UserContext);
   const { name, email, password, password2 } = user;
+  const alert = useAlert();
+
+  // const errorAlert = () => {
+  //   alert.error('Form filled out incorrectly', {
+  //     timeout: 2000
+  //   });
+
+  //   setUser({
+  //     name: '',
+  //     email: '',
+  //     password: '',
+  //     password2: ''
+  //   });
+  // };
+
+  const errorAlert = () => {
+    if (password !== password2) {
+      alert.error('PASSWORDS DO NOT MATCH', {
+        timeout: 3000,
+        position: 'bottom right'
+      });
+    } else if (email.length > 0 && !email.includes('@')) {
+      alert.error('Invalid Email', {
+        timeout: 3000,
+        position: 'bottom right'
+      });
+    } else if (
+      name === '' ||
+      email === '' ||
+      password === '' ||
+      password2 === ''
+    ) {
+      alert.error('Some form fields are empty... please enter all of them', {
+        timeout: 3000,
+        position: 'bottom right'
+      });
+    }
+    clearFields();
+  };
 
   const onChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  const clearFields = e => {
+    setUser({
+      name: '',
+      email: '',
+      password: '',
+      password2: ''
+    });
+  };
+
+  const success = e => {
+    console.log(`${name} registered`);
+  };
+
   const onSubmit = e => {
     e.preventDefault();
-    if (password === password2) {
-      console.log(`${name} registered`);
-    } else {
-      console.log('alert passwords do not match');
-    }
+    console.log('123');
   };
 
   return (
@@ -80,9 +132,32 @@ const Register = () => {
           ></input>
         </div>
       </div>
-      <button type='submit' className='btn btn-primary'>
-        Register
-      </button>
+
+      {name &&
+      email.includes('@') &&
+      password === password2 &&
+      password.length > 5 ? (
+        <div>
+          <Link to='/login'>
+            <button className='btn btn-primary' onClick={success}>
+              Register
+            </button>
+          </Link>
+          <hr />
+        </div>
+      ) : (
+        <div>
+          <button
+            type='submit'
+            className='btn btn-primary'
+            onClick={errorAlert}
+            type='submit'
+          >
+            Register
+          </button>
+          <hr />
+        </div>
+      )}
     </form>
   );
 };

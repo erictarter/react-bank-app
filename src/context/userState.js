@@ -5,6 +5,7 @@ export const UserState = props => {
   const [user, setUser] = useState({
     name: '',
     email: '',
+    matchEmail: '',
     password: '',
     password2: ''
   });

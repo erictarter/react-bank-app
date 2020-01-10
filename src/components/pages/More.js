@@ -26,10 +26,4 @@ const More = () => {
 };
 export default More;
 
-// add alerts
-
-// match emails
-
-// if registered link to login page
-
 // if login successfull link to account UI page
