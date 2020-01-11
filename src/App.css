@@ -81,3 +81,14 @@
   position: relative;
   top: 6px;
 }
+
+.drop-right {
+  position: relative;
+  left: 60px;
+  float: right;
+}
+.drop-left {
+  position: relative;
+  left: 100px;
+  float: right;
+}

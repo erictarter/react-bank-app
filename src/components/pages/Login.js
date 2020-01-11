@@ -4,6 +4,7 @@ import { useAlert } from 'react-alert';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import Register from '../pages/Register';
 import UserContext from '../../context/userContext';
+import NavBar from '../layout/NavBar';
 
 const Login = () => {
   const { user, setUser } = useContext(UserContext);
@@ -27,48 +28,51 @@ const Login = () => {
   };
 
   return (
-    <form className='container' onSubmit={onSubmit}>
-      <hr />
-      <div className='alert alert-info' role='alert'>
-        You are now Registed {name}! Login to use the app.
-      </div>
-      <div className='form-row'>
-        <div className='form-group col-md-6'>
-          <label></label>
-          <input
-            type='email'
-            className='form-control'
-            name='matchEmail'
-            placeholder='Email'
-            onChange={onChange}
-            required
-          ></input>
+    <div>
+      <NavBar />
+      <form className='container' onSubmit={onSubmit}>
+        <hr />
+        <div className='alert alert-info' role='alert'>
+          You are now Registered {name}! Login to use the app.
         </div>
-        <div className='form-group col-md-6'>
-          <label></label>
-          <input
-            type='password'
-            className='form-control'
-            name='password'
-            placeholder='Password'
-            onChange={onChange}
-            required
-            minLength='6'
-          ></input>
+        <div className='form-row'>
+          <div className='form-group col-md-6'>
+            <label></label>
+            <input
+              type='email'
+              className='form-control'
+              name='matchEmail'
+              placeholder='Email'
+              onChange={onChange}
+              required
+            ></input>
+          </div>
+          <div className='form-group col-md-6'>
+            <label></label>
+            <input
+              type='password'
+              className='form-control'
+              name='password'
+              placeholder='Password'
+              onChange={onChange}
+              required
+              minLength='6'
+            ></input>
+          </div>
         </div>
-      </div>
-      {email === matchEmail && password === password2 ? (
-        <Link to='/account'>
+        {email === matchEmail && password === password2 ? (
+          <Link to='/account'>
+            <button type='submit' className='btn btn-primary'>
+              Login
+            </button>
+          </Link>
+        ) : (
           <button type='submit' className='btn btn-primary'>
             Login
           </button>
-        </Link>
-      ) : (
-        <button type='submit' className='btn btn-primary'>
-          Login
-        </button>
-      )}
-    </form>
+        )}
+      </form>
+    </div>
   );
 };
 

@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
+import NavBar from '../layout/NavBar';
 import { Link } from 'react-router-dom';
 import { useAlert } from 'react-alert';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import UserContext from '../../context/userContext';
-import { timeout } from 'q';
 
 const Register = () => {
   // const [user, setUser] = useState({
@@ -77,88 +77,91 @@ const Register = () => {
   };
 
   return (
-    <form className='container' onSubmit={onSubmit}>
-      <div className='form-row'>
-        <div className='form-group col-md-4'>
-          <label></label>
-          <input
-            type='text'
-            className='form-control'
-            name='name'
-            placeholder='Name'
-            value={name}
-            onChange={onChange}
-            required
-          ></input>
+    <div>
+      <NavBar />
+      <form className='container' onSubmit={onSubmit}>
+        <div className='form-row'>
+          <div className='form-group col-md-4'>
+            <label></label>
+            <input
+              type='text'
+              className='form-control'
+              name='name'
+              placeholder='Name'
+              value={name}
+              onChange={onChange}
+              required
+            ></input>
+          </div>
+          <div className='form-group col-md-6'>
+            <label></label>
+            <input
+              type='email'
+              className='form-control'
+              name='email'
+              placeholder='Email'
+              value={email}
+              onChange={onChange}
+              required
+            ></input>
+          </div>
+          <div className='form-group col-md-6'>
+            <label></label>
+            <input
+              type='password'
+              className='form-control'
+              name='password'
+              placeholder='Password'
+              value={password}
+              onChange={onChange}
+              required
+              minLength='6'
+            ></input>
+          </div>
         </div>
-        <div className='form-group col-md-6'>
-          <label></label>
-          <input
-            type='email'
-            className='form-control'
-            name='email'
-            placeholder='Email'
-            value={email}
-            onChange={onChange}
-            required
-          ></input>
+        <div className='form-row'>
+          <div className='form-group col-md-6'>
+            <label></label>
+            <input
+              type='password'
+              className='form-control'
+              name='password2'
+              placeholder='Confirm Password'
+              value={password2}
+              onChange={onChange}
+              minLength='6'
+              required
+            ></input>
+          </div>
         </div>
-        <div className='form-group col-md-6'>
-          <label></label>
-          <input
-            type='password'
-            className='form-control'
-            name='password'
-            placeholder='Password'
-            value={password}
-            onChange={onChange}
-            required
-            minLength='6'
-          ></input>
-        </div>
-      </div>
-      <div className='form-row'>
-        <div className='form-group col-md-6'>
-          <label></label>
-          <input
-            type='password'
-            className='form-control'
-            name='password2'
-            placeholder='Confirm Password'
-            value={password2}
-            onChange={onChange}
-            minLength='6'
-            required
-          ></input>
-        </div>
-      </div>
 
-      {name &&
-      email.includes('@') &&
-      password === password2 &&
-      password.length > 5 ? (
-        <div>
-          <Link to='/login'>
-            <button className='btn btn-primary' onClick={success}>
+        {name &&
+        email.includes('@') &&
+        password === password2 &&
+        password.length > 5 ? (
+          <div>
+            <Link to='/login'>
+              <button className='btn btn-primary' onClick={success}>
+                Register
+              </button>
+            </Link>
+            <hr />
+          </div>
+        ) : (
+          <div>
+            <button
+              type='submit'
+              className='btn btn-primary'
+              onClick={errorAlert}
+              type='submit'
+            >
               Register
             </button>
-          </Link>
-          <hr />
-        </div>
-      ) : (
-        <div>
-          <button
-            type='submit'
-            className='btn btn-primary'
-            onClick={errorAlert}
-            type='submit'
-          >
-            Register
-          </button>
-          <hr />
-        </div>
-      )}
-    </form>
+            <hr />
+          </div>
+        )}
+      </form>
+    </div>
   );
 };
 

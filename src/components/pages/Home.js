@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from '../layout/NavBar';
 
 const Home = () => {
   return (
     <div>
+      <NavBar />
       <div className='container'>
         <div className='row' style={{ paddingTop: '45px' }}>
           <div className='col-md-4'>
